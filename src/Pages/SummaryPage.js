@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CountryItem from "../Components/Country";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-
-const CountryListPage = (props) => {
+const CountryListPage = () => {
 	const [countries, setCountriesList] = useState([]);
-	const [error, setError] = useState(null);
+	const [setError] = useState(null);
 
 	useEffect(() => {
 		try {
@@ -15,34 +13,32 @@ const CountryListPage = (props) => {
 				);
 
 				const resjson = await res.json();
-
 				setCountriesList([...resjson]);
 			}
 
 			getData();
 		} catch (e) {
-			setError(`Can't pull right now. Try again later.`);
+			setError(`Can't get country infomation.`);
 		}
 	}, []);
 
 	return (
 		<ul className="flex-center">
-				{countries.length > 0 &&
-					!error &&
-					countries
-						.map((c, index) => {
-							return (
-								<CountryItem
-									key={index}
-									flag={c.flag}
-									name={c.name}
-									region={c.region}
-									capital={c.capital}
-									population={c.population}
-								/>
-							);
-						})}
-			</ul>
+            {
+                countries.map((c, index) => {
+                    return (
+                        <CountryItem
+                            key={index}
+                            flag={c.flag}
+                            name={c.name}
+                            region={c.region}
+                            capital={c.capital}
+                            population={c.population}
+                        />
+                    );
+                })
+            }
+        </ul>
 	);
 };
 

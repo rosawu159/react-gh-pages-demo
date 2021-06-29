@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const CountryItem = ({ key, name, region, population, capital, flag }) => {
 
